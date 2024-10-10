@@ -1,0 +1,6 @@
+@WKTechnology.Api_HostAddress = http://localhost:5234
+
+GET {{WKTechnology.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

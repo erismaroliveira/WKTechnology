@@ -1,0 +1,29 @@
+<div class="container mt-5">
+    <h2>Lista de Produtos</h2>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">Preço</th>
+                <th scope="col">Categoria</th>
+                <th scope="col">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (produto of produtos; track $index) {
+                <tr>
+                    <td>{{ produto.nome }}</td>
+                    <td>{{ produto.preco | currency: 'BRL':'symbol' }}</td>
+                    <td>{{ produto.categoriaNome }}</td>
+                    <td>
+                        <button class="btn btn-outline-primary mx-1" (click)="editarProduto(produto.id)">Editar</button>
+                        <button class="btn btn-outline-primary" (click)="confirmDelete(produto.id)">Deletar</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <button class="btn btn-outline-primary" (click)="adicionarProduto()">Novo Produto</button>
+</div>
