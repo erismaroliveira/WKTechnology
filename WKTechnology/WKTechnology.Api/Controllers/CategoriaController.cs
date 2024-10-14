@@ -15,65 +15,60 @@ public class CategoriaController : ControllerBase
         _categoriaService = categoriaService;
     }
 
-    [HttpGet]
+    [HttpGet("obter-todas")]
     public async Task<IActionResult> GetAll()
     {
         var categorias = await _categoriaService.GetAllWithProductsAsync();
         return Ok(categorias);
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("obter-por-id/{id}")]
     public async Task<IActionResult> GetById(int id)
     {
         var categoria = await _categoriaService.GetByIdAsync(id);
-        if (categoria == null)
+
+        if (categoria is null)
         {
-            return NotFound();
+            return NotFound(new { message = "Categoria não encontrada." });
         }
+
         return Ok(categoria);
     }
 
-    [HttpPost]
+    [HttpPost("criar")]
     public async Task<IActionResult> Create([FromBody] CategoriaDTO categoriaDto)
     {
-        if (!ModelState.IsValid)
-        {
-            return BadRequest(ModelState);
-        }
-
         var createdCategoria = await _categoriaService.CreateAsync(categoriaDto);
-        return CreatedAtAction(nameof(GetById), new { id = createdCategoria.Id }, createdCategoria);
+        return Ok(createdCategoria);
     }
 
-    [HttpPut("{id}")]
-    public async Task<IActionResult> Update(int id, [FromBody] CategoriaDTO categoriaDto)
+    [HttpPut("atualizar")]
+    public async Task<IActionResult> Update([FromBody] CategoriaDTO categoriaDto)
     {
-        if (id != categoriaDto.Id)
-        {
-            return BadRequest("Incompatibilidade de ID");
-        }
-
-        if (!ModelState.IsValid)
-        {
-            return BadRequest(ModelState);
-        }
-
         var isUpdated = await _categoriaService.UpdateAsync(categoriaDto);
-        if (!isUpdated)
-        {
-            return StatusCode(StatusCodes.Status500InternalServerError, "Ocorreu um erro ao atualizar a categoria");
-        }
-
-        return NoContent();
+        return Ok(isUpdated);
     }
 
-    [HttpDelete("{id}")]
+    [HttpDelete("deletar/{id}")]
     public async Task<IActionResult> Delete(int id)
     {
         var isDeleted = await _categoriaService.DeleteAsync(id);
         if (!isDeleted)
         {
-            return NotFound();
+            return NotFound(new { message = "Categoria não encontrada ou não pôde ser excluída." });
+        }
+
+        return NoContent();
+    }
+
+    [HttpPatch("inativar/{id}")]
+    public async Task<IActionResult> Inactivate(int id)
+    {
+        var isInactivated = await _categoriaService.InactivateAsync(id);
+
+        if (!isInactivated)
+        {
+            return NotFound(new { message = "Categoria não encontrada." });
         }
 
         return NoContent();

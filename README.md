@@ -18,7 +18,7 @@ Este projeto consiste em duas partes principais: a API construída com ASP.NET C
 
 Certifique-se de ter os seguintes itens instalados:
 
-- [.NET SDK](https://dotnet.microsoft.com/download) (versão 6.0 ou superior)
+- [.NET SDK](https://dotnet.microsoft.com/download) (versão 8.0 ou superior)
 - [Node.js e NPM](https://nodejs.org/en/) (versão 16 ou superior)
 - [Angular CLI](https://angular.io/cli) (instalado globalmente)
 - [MySQL](https://www.mysql.com/) (para o banco de dados)
@@ -72,7 +72,7 @@ Certifique-se de ter os seguintes itens instalados:
 1. Navegue até o diretório do projeto do front-end:
 
    ```bash
-   cd WKTechnology/WKTechApp
+   cd WKTechnology/wk-tech-app
    ```
 
 2. Instale as dependências do projeto:
@@ -101,7 +101,7 @@ Certifique-se de ter os seguintes itens instalados:
 
 ### Rodando o Front-end
 
-1. No diretório do front-end (`WKTechApp`), execute o comando para rodar o servidor de desenvolvimento:
+1. No diretório do front-end (`wk-tech-app`), execute o comando para rodar o servidor de desenvolvimento:
 
    ```bash
    ng serve
@@ -122,7 +122,7 @@ Certifique-se de ter os seguintes itens instalados:
   ```typescript
   export const environment = {
     production: false,
-    API_URL: "http://localhost:5234/api/"
+    API_URL: "http://localhost:5234/api/",
   };
   ```
 

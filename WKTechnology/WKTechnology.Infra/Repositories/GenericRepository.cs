@@ -1,5 +1,7 @@
-using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 using WKTechnology.Infra.Context;
 using WKTechnology.Infra.Repositories.Interfaces;
 
@@ -48,5 +50,34 @@ public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEnt
     public async Task<bool> SaveAsync()
     {
         return await _context.SaveChangesAsync() > 0;
+    }
+
+    public IQueryable<TEntity> FindAll(
+        Expression<Func<TEntity, bool>> predicate,
+        Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null)
+    {
+        var query = _dbSet.AsQueryable();
+
+        if (include != null)
+        {
+            query = include(query);
+        }
+
+        return query.Where(predicate);
+    }
+
+    public TEntity Find(Expression<Func<TEntity, bool>> predicate, params Expression<Func<TEntity, object>>[] includeProperties)
+    {
+        IQueryable<TEntity> query = _dbSet.AsQueryable();
+
+        if (includeProperties != null && includeProperties.Length > 0)
+        {
+            foreach (var property in includeProperties)
+            {
+                query = query.Include(property);
+            }
+        }
+
+        return query.FirstOrDefault(predicate);
     }
 }

@@ -14,6 +14,13 @@ public class CategoriaRepository : GenericRepository<Categoria>, ICategoriaRepos
         _context = context;
     }
 
+    public async Task<Categoria> GetByIdWithProductsAsync(int id)
+    {
+        return await _context.Categorias
+            .Include(c => c.Produtos)
+            .FirstOrDefaultAsync(c => c.Id == id);
+    }
+
     public async Task<IEnumerable<Categoria>> GetAllWithProductsAsync()
     {
         return await _context.Categorias

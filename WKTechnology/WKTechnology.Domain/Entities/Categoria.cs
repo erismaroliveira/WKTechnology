@@ -12,6 +12,8 @@ public class Categoria
     public Categoria()
     {
         Produtos = new List<Produto>();
+        Ativo = true;
+        DataCadastro = DateTime.Now;
     }
 
     public Categoria(string nome, bool ativo)

@@ -2,28 +2,37 @@
     <h2 class="mt-5">{{ produto.id ? 'Editar Produto' : 'Adicionar Produto' }}</h2>
 
     <form (ngSubmit)="salvar()">
-        <label for="nome">Nome:</label>
-        <input type="text" class="form-control" id="nome" [(ngModel)]="produto.nome" name="nome" required />
+        <div class="mb-3">
+            <label for="nome">Nome:</label>
+            <input type="text" class="form-control" id="nome" [(ngModel)]="produto.nome" name="nome" required />
+        </div>
 
-        <label for="nome">Descrição:</label>
-        <textarea class="form-control" id="descricao" [(ngModel)]="produto.descricao" name="descricao"></textarea>
+        <div class="mb-3">
+            <label for="nome">Descrição:</label>
+            <textarea class="form-control" id="descricao" [(ngModel)]="produto.descricao" name="descricao"></textarea>
+        </div>
 
-        <label for="preco">Preço:</label>
-        <input type="number" class="form-control" id="preco" [(ngModel)]="produto.preco" name="preco" required />
+        <div class="mb-3">
+            <label for="preco">Preço:</label>
+            <input type="number" class="form-control" id="preco" [(ngModel)]="produto.preco" name="preco" required />
+        </div>
 
-        <label for="categoria">Categoria:</label>
-        <select class="form-control" id="categoria" [(ngModel)]="produto.categoriaId" name="categoriaId" required>
-            @for (categoria of categorias; track $index) {
-                <option [value]="categoria.id">
-                    {{ categoria.nome }}
-                </option>
-            }
-        </select>
+        <div class="mb-3">
+            <label for="categoria">Categoria:</label>
+            <select class="form-control" id="categoria" [(ngModel)]="produto.categoriaId" name="categoriaId" required>
+                <option [value]="" disabled selected>-- SELECIONE --</option>
+                @for (categoria of categorias; track $index) {
+                    <option [value]="categoria.id">
+                        {{ categoria.nome }}
+                    </option>
+                }
+            </select>
+        </div>
 
         <div class="row">
             <div class="col-md-6">
-                <button class="btn btn-outline-primary mt-3" type="submit">Salvar</button>&nbsp;
-                <button class="btn btn-outline-primary mt-3" (click)="router.navigate(['/produtos'])">Cancelar</button>
+                <button class="btn btn-outline-primary mt-3" type="submit"><i class="fa-regular fa-floppy-disk"></i> Salvar</button>&nbsp;
+                <button class="btn btn-outline-danger mt-3" (click)="router.navigate(['/produtos'])"><i class="fa-solid fa-ban"></i> Cancelar</button>
             </div>
         </div>
     </form>

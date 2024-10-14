@@ -6,11 +6,11 @@ import { ProdutoListComponent } from './produto/produto-list/produto-list.compon
 
 export const routes: Routes = [
   { path: '', redirectTo: '/categorias', pathMatch: 'full' },
-  { path: '**', redirectTo: '/categorias' },
   { path: 'categorias', component: CategoriaListComponent },
   { path: 'categorias/novo', component: CategoriaFormComponent },
   { path: 'categorias/editar/:id', component: CategoriaFormComponent },
   { path: 'produtos', component: ProdutoListComponent },
   { path: 'produtos/novo', component: ProdutoFormComponent },
   { path: 'produtos/editar/:id', component: ProdutoFormComponent },
+  { path: '**', redirectTo: '/categorias' },
 ];

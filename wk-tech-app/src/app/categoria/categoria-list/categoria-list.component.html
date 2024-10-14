@@ -1,26 +1,26 @@
 <div class="container mt-5">
     <h2>Lista de Categorias</h2>
-    <button class="btn btn-outline-primary" (click)="adicionarCategoria()">Adicionar Categoria</button>
+    <button class="btn btn-outline-primary" (click)="adicionarCategoria()"><i class="fa-solid fa-plus"></i> Adicionar Categoria</button>
 
-    <table class="table table-striped">
-    <thead>
-        <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Nome</th>
-        <th scope="col">Ações</th>
-        </tr>
-    </thead>
-    <tbody>
-        @for (categoria of categorias; track $index) {
+    <table class="table table-bordered table-striped mt-3">
+        <thead>
             <tr>
-                <td>{{ categoria.id }}</td>
-                <td>{{ categoria.nome }}</td>
-                <td>
-                <button class="btn btn-outline-primary mx-1" (click)="editarCategoria(categoria.id)">Editar</button>
-                <button class="btn btn-outline-primary" (click)="confirmDelete(categoria.id)">Excluir</button>
-                </td>
+                <th scope="col">ID</th>
+                <th scope="col">Nome</th>
+                <th scope="col" style="width: 10%;">Ações</th>
             </tr>
-        }
-    </tbody>
+        </thead>
+        <tbody>
+            @for (categoria of categorias; track $index) {
+                <tr>
+                    <td>{{ categoria.id }}</td>
+                    <td>{{ categoria.nome }}</td>
+                    <td>
+                        <button class="btn btn-outline-warning mx-1" (click)="editarCategoria(categoria.id)"><i class="fa-solid fa-pencil"></i></button>
+                        <button class="btn btn-outline-danger" (click)="confirmDelete(categoria.id)"><i class="fa-solid fa-trash"></i></button>
+                    </td>
+                </tr>
+            }
+        </tbody>
     </table>
 </div>

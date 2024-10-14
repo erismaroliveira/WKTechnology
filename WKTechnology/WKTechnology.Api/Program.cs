@@ -15,7 +15,6 @@ builder.Services.AddCors(options =>
 builder.Services.AddApplicationServices();
 builder.Services.AddRepositoriesServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
-builder.Services.AddAutoMapperServices();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

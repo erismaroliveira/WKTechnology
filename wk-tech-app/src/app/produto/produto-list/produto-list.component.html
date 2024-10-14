@@ -1,13 +1,13 @@
 <div class="container mt-5">
     <h2>Lista de Produtos</h2>
 
-    <table class="table table-striped">
+    <table class="table table-bordered table-striped">
         <thead>
             <tr>
                 <th scope="col">Nome</th>
                 <th scope="col">Preço</th>
                 <th scope="col">Categoria</th>
-                <th scope="col">Ações</th>
+                <th scope="col" style="width: 10%;">Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -17,13 +17,13 @@
                     <td>{{ produto.preco | currency: 'BRL':'symbol' }}</td>
                     <td>{{ produto.categoriaNome }}</td>
                     <td>
-                        <button class="btn btn-outline-primary mx-1" (click)="editarProduto(produto.id)">Editar</button>
-                        <button class="btn btn-outline-primary" (click)="confirmDelete(produto.id)">Deletar</button>
+                        <button class="btn btn-outline-primary mx-1" (click)="editarProduto(produto.id)"><i class="fa-solid fa-pencil"></i></button>
+                        <button class="btn btn-outline-danger" (click)="confirmDelete(produto.id)"><i class="fa-solid fa-trash"></i></button>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
 
-    <button class="btn btn-outline-primary" (click)="adicionarProduto()">Novo Produto</button>
+    <button class="btn btn-outline-primary" (click)="adicionarProduto()"><i class="fa-solid fa-plus"></i> Novo Produto</button>
 </div>
