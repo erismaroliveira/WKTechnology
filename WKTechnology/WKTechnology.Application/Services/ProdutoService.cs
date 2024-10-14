@@ -9,9 +9,9 @@ namespace WKTechnology.Application.Services;
 
 public class ProdutoService : IProdutoService
 {
-    private readonly IProdutoRepository _produtoRepository;
+    private readonly IGenericRepository<Produto> _produtoRepository;
 
-    public ProdutoService(IProdutoRepository produtoRepository)
+    public ProdutoService(IGenericRepository<Produto> produtoRepository)
     {
         _produtoRepository = produtoRepository;
     }

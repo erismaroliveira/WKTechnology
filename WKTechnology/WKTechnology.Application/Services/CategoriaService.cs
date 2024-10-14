@@ -9,9 +9,9 @@ namespace WKTechnology.Application.Services;
 
 public class CategoriaService : ICategoriaService
 {
-    private readonly ICategoriaRepository _categoriaRepository;
+    private readonly IGenericRepository<Categoria> _categoriaRepository;
 
-    public CategoriaService(ICategoriaRepository categoriaRepository)
+    public CategoriaService(IGenericRepository<Categoria> categoriaRepository)
     {
         _categoriaRepository = categoriaRepository;
     }

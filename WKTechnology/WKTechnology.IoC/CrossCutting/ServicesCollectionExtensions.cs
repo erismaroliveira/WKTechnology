@@ -24,8 +24,6 @@ public static class ServicesCollectionExtensions
     {
         services.AddScoped<IGenericRepository<Categoria>, GenericRepository<Categoria>>();
         services.AddScoped<IGenericRepository<Produto>, GenericRepository<Produto>>();
-        services.AddScoped<ICategoriaRepository, CategoriaRepository>();
-        services.AddScoped<IProdutoRepository, ProdutoRepository>();
 
         return services;
     }
